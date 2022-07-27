@@ -7,6 +7,7 @@ import secrets
 from flask_behind_proxy import FlaskBehindProxy
 import os
 from recipes import get_recipes
+from movies import get_movies
 
 # Variables to be used globally
 Search_Term = ""
@@ -27,7 +28,7 @@ def search_bar():
         Search_Term = request.form.get('search_bar')
         if Search_Type == "all":
             book_results = []
-            movie_results = []
+            movie_results = get_movies(Search_Term)
             show_results = []
             music_results = []
             recipe_results = get_recipes(Search_Term)
@@ -37,7 +38,7 @@ def search_bar():
         elif Search_Type == "books":
             Search_Results = []
         elif Search_Type == "movies":
-            Search_Results = []
+            Search_Results = get_movies(Search_Term)
         elif Search_Type == "shows":
             Search_Results = []
         elif Search_Type == "music":
