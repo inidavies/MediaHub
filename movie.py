@@ -22,7 +22,11 @@ def movie_search(movie_input):
                         key = vid_request['results'][j]['key']
                         break
                     j += 1
-                df.loc[len(df.index)] = [request['results'][i]['original_title'], request['results'][i]['release_date'], youtube + key]
+                if len(key) >= 1:
+                    df.loc[len(df.index)] = [request['results'][i]['original_title'], request['results'][i]['release_date'], youtube + key]
+                else:
+                    no_key = 'No trailer for this movie'
+                    df.loc[len(df.index)] = [request['results'][i]['original_title'], request['results'][i]['release_date'], no_key]
                 i += 1
         except IndexError:
             print('No movies for this search')
