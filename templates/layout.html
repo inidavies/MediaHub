@@ -29,17 +29,19 @@
                     <div class="labels">
                         <label>
                             <span>Filter By:</span>
-                            <button class="all" value="all" onclick="choose_type('all'); return false;">All</button>
-                            <button class="books" value="books" onclick="choose_type('books'); return false;">Books</button> 
-                            <button class="movies" value="movies" onclick="choose_type('movies'); return false;">Movies</button> 
-                            <button class="shows" value="shows" onclick="choose_type('shows'); return false;">Shows</button>  
-                            <button class="music" value="music" onclick="choose_type('music'); return false;">Music</button>
-                            <button class="recipes" value="recipes" onclick="choose_type('recipes'); return false;">Recipes</button> 
+                            <button class="all"  onclick="choose_type('all'); return false;">All</button>
+                            <button class="books" onclick="choose_type('books'); return false;">Books</button> 
+                            <button class="movies" onclick="choose_type('movies'); return false;">Movies</button> 
+                            <button class="shows" onclick="choose_type('shows'); return false;">Shows</button>  
+                            <button class="music" onclick="choose_type('music'); return false;">Music</button>
+                            <button class="recipes" onclick="choose_type('recipes'); return false;">Recipes</button> 
                         </label>
                     </div>
+                </form>
+                <form method="POST" action="">
                     <div class="container">
                             <input class="search__input" name="search_bar" placeholder="Search for something"/>
-                            <input type="hidden" name="type" value="None"/>
+                            <input type="hidden" name="list_type" value="all"/>
                     </div>
                     <div class="add_instr">
                         <button type="button" name="Add">+</button><span>Add one yourself</span>
@@ -53,7 +55,7 @@
   <script>
       function choose_type(type)
       {
-        document.getElementsByName('type').value = type; 
+        document.getElementsByName('list_type')[0].value = type; 
         document.getElementsByName('search_bar')[0].placeholder = 'Search in ' + type; 
       }
   </script>

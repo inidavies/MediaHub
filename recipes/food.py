@@ -32,7 +32,6 @@ def request_recipes(ingredient):
     response = requests.get(URL, headers=headers, params=querystring)
     if response.status_code == 200:
         data = response.json()['results']
-        #print(data)
         return data
     else:
         str(r.status_code) + ': ' + str(r.reason)
@@ -45,13 +44,17 @@ def process_json(recipe_list):
 
     for recipe in recipe_list:
         if "name" in recipe and "thumbnail_url" in recipe and "video_url" in recipe and "description" in recipe:
-            recipe_name = recipe["name"]
-            recipe_video = recipe["video_url"]
-            recipe_thumbnail = recipe["thumbnail_url"]
-            recipe_descr = recipe["description"]
-            current_recipe = {'name': recipe_name,
-                            'video': recipe_video,
-                            'thumbnail': recipe_thumbnail,
-                            'description': recipe_descr}
-            data_container.append(current_recipe)
+            if recipe["name"] != None and recipe["thumbnail_url"] != None and recipe["video_url"] != None and recipe["description"] != None:
+                print(recipe["description"])
+                recipe_name = recipe["name"]
+                recipe_video = recipe["video_url"]
+                recipe_thumbnail = recipe["thumbnail_url"]
+                recipe_descr = recipe["description"]
+                current_recipe = {'name': recipe_name,
+                                'video': recipe_video,
+                                'thumbnail': recipe_thumbnail,
+                                'description': recipe_descr}
+                data_container.append(current_recipe)
     return data_container
+
+#print(get_recipes("rice"))

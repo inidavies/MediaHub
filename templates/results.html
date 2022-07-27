@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
 <ul>
-    {% for item in results %} 
+    {% for result in results %} 
             <li>
-                <div class="">
-                    
+                <div class="result">
+                    <p> Name: {{ result['name']}} </p>
+                    <p> Description: {{ result['description']}} </p>
+                    <p> Link: <a href="{{ result['video'] }}"> Find it here </a></p>
                 </div>
             </li>
     {% endfor %}
