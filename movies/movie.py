@@ -49,7 +49,7 @@ def get_movies(movie_input):
                     movie_date = request['results'][i]['release_date']
                     movie_link = youtube + key
                     df.loc[len(df.index)] = [movie_name, movie_date, movie_link]
-                    current_movie = {"name": movie_name, "date": movie_date, "video": movie_link}
+                    current_movie = {"name": movie_name, "date": movie_date, "link": movie_link}
                     data_container.append(current_movie)
                 i += 1
         except IndexError:

@@ -51,7 +51,7 @@ def process_json(recipe_list):
                 recipe_thumbnail = recipe["thumbnail_url"]
                 recipe_descr = recipe["description"]
                 current_recipe = {'name': recipe_name,
-                                'video': recipe_video,
+                                'link': recipe_video,
                                 'thumbnail': recipe_thumbnail,
                                 'description': recipe_descr}
                 data_container.append(current_recipe)

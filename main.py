@@ -8,6 +8,8 @@ from flask_behind_proxy import FlaskBehindProxy
 import os
 from recipes import get_recipes
 from movies import get_movies
+from music import get_music
+
 
 # Variables to be used globally
 Search_Term = ""
@@ -30,7 +32,7 @@ def search_bar():
             book_results = []
             movie_results = get_movies(Search_Term)
             show_results = []
-            music_results = []
+            music_results = get_music(Search_Term)
             recipe_results = get_recipes(Search_Term)
             results_pt1 = book_results + movie_results + show_results
             results_pt2 = music_results + recipe_results
@@ -42,7 +44,7 @@ def search_bar():
         elif Search_Type == "shows":
             Search_Results = []
         elif Search_Type == "music":
-            Search_Results = []
+            Search_Results = get_music(Search_Term)
         elif Search_Type == "recipes":
             Search_Results = get_recipes(Search_Term)
         return True
