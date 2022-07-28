@@ -1,7 +1,7 @@
 import requests
 import os
 import re
-from links import get_link
+from pprint import pprint
 
 API_KEY = os.environ.get('RECIPE_API_KEY')
 API_HOST = os.environ.get('RECIPE_API_HOST')
@@ -25,18 +25,21 @@ def get_recipes(ingredient):
 def request_recipes(ingredient):
     ''' This should return a dictionary of recipes '''
     # Specifies the query string and the size of the results expected
-    querystring = {"from": "0", "size": "10", "q": ingredient}
+    url = "https://edamam-recipe-search.p.rapidapi.com/search"
+
+    querystring = {"q":ingredient, "imageSize":"THUMBNAIL"}
 
     headers = {
-        "X-RapidAPI-Key": API_KEY,
-        "X-RapidAPI-Host": API_HOST
+        "X-RapidAPI-Key": "2f0847bcc5mshe005ab687e03bf2p1f34dejsn709aedc05a6a",
+        "X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com"
     }
-    response = requests.get(URL, headers=headers, params=querystring)
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
     if response.status_code == 200:
-        data = response.json()['results']
+        data = response.json()['hits']
         return data
     else:
-        str(r.status_code) + ': ' + str(r.reason)
+        return str(response.status_code) + ': ' + str(response.reason)
 
 def process_json(recipe_list):
     """
@@ -44,16 +47,50 @@ def process_json(recipe_list):
     """
     data_container = []
 
-    for recipe in recipe_list:
-        if "name" in recipe and "thumbnail_url" in recipe and "description" in recipe:
-            if recipe["name"] != None and recipe["thumbnail_url"] != None and recipe["description"] != None:
-                recipe_name = recipe["name"]
-                recipe_thumbnail = recipe["thumbnail_url"]
-                recipe_descr = recipe["description"]
-                recipe_video = get_link(recipe_name)
-                current_recipe = {'name': recipe_name,
+    for item in recipe_list:
+        recipe = item["recipe"]
+        if "label" in recipe and "image" in recipe and "shareAs" in recipe:
+            if recipe["label"] != None and recipe["image"] != None and "shareAs" != None:
+                recipe_name = recipe["label"]
+                recipe_thumbnail = recipe["image"]
+                recipe_video = recipe["shareAs"]
+                current_recipe = {'dish': recipe_name,
                                 'link': recipe_video,
-                                'thumbnail': recipe_thumbnail,
-                                'description': recipe_descr}
+                                'thumbnail': recipe_thumbnail}
                 data_container.append(current_recipe)
     return data_container
+
+#pprint(request_recipes("rice"))
+#pprint(get_recipes("rice"))
+'''
+import requests
+from pprint import pprint
+
+url = "https://edamam-recipe-search.p.rapidapi.com/search"
+
+querystring = {"q":"chicken", "imageSize":"SMALL"}
+
+headers = {
+	"X-RapidAPI-Key": "2f0847bcc5mshe005ab687e03bf2p1f34dejsn709aedc05a6a",
+	"X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com"
+}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+pprint(response.json()["hits"][0])
+'''
+
+'''from py_edamam import Edamam
+from pprint import pprint
+e = Edamam(recipes_appid='62dfd4d9',
+           recipes_appkey='097906ea45712e4232a85c3b80df858c')
+
+recipes_list = e.search_recipe("onion and chicken")
+
+# keys scrapped from web demo, but you can provide yours above
+nutrient_data = e.search_nutrient("1 large apple")
+
+foods_list = e.search_food("chocolate")
+pprint(recipes_list["hits"][5]["recipe"]["image"])
+
+'''

@@ -48,6 +48,7 @@ def search_bar():
             Search_Results = get_music(Search_Term)
         elif Search_Type == "recipes":
             Search_Results = get_recipes(Search_Term)
+            print(Search_Results)
         return True
     
 
@@ -82,7 +83,7 @@ def results(type):
     if search == True:
         return redirect(url_for("results", type=type, search_term=Search_Term))
 
-    return render_template('results.html', results=Search_Results)
+    return render_template('results.html', results=Search_Results, search_term = Search_Term)
 
 
 # Author credit webpage function

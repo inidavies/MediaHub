@@ -23,6 +23,7 @@ def find_books(search):
         #pprint(book_data['items'])
         book_info = book_data["items"]
         data_container = []
+        current_book = {}
         for book in book_info:
                 book_details = book["volumeInfo"]
                 if "title" in book_details and "authors" in book_details and "previewLink" in book_details and "imageLinks" in book_details:

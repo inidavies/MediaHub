@@ -1,79 +1,92 @@
 {% extends "layout.html" %}
 {% block content %}
-<ul>
-    {% for result in results %} 
-        {% if "description" in result %} 
-            <li>
-                <form method="POST" action="">
-                <div class="result">
-                    <input type="image" class="result_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
-                    <div class="result_text">
-                        <p class="result_item"> Type: Recipe </p>
-                        <p class="result_item"> Name: {{ result['name']}} </p>
-                        <p class="result_item"> Description:</p>{{ result['description']}} </p>
-                        <p class="result_item"> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+<p id="search_summ" > 
+    Showing 
+    <span style="color:#FFC145">{{ results|length }}</span>
+     results for 
+    <span style="text-transform:capitalize; color:#FFC145;">" {{ search_term }} "</span>
+</p>
+<div class="result_container">
+    <ul>
+        {% for result in results %} 
+            {% if "dish" in result %} 
+                <li>
+                    <form method="POST" action="">
+                    <div class="result">
+                        <input type="image" class="result_img result_item wider_img" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                        <div class="result_text">
+                            <p class="result_item"> Type: Recipe </p>
+                            <p class="result_item"> Name: {{ result['dish']}} </p>
+                            <p class="result_item"> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                        </div>
                     </div>
-                </div>
-                <input type="hidden" name="submit" value={{ result }}>
-                </form>
-            </li>
-        {% endif %}
-        {% if "artist" in result %} 
-            <li>
-                <form method="POST" action="">
-                <div class="result">
-                    <div class="result_text">
-                        <p> Type: Music </p>
+                    <input type="hidden" name="submit" value={{ result }}>
+                    </form>
+                </li>
+            {% endif %}
+            {% if "artist" in result %} 
+                <li>
+                    <form method="POST" action="">
+                    <div class="result">
+                        <input type="image" class="result_img wider_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                        <div class="result_text">
+                            <p> Type: Music </p>
+                            <p> Name: {{ result['name']}} </p>
+                            <p> Artist: {{ result['artist']}} </p>
+                        </div>
+                        <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                    </div>
+                    <input type="hidden" name="submit" value={{ result }}>
+                    </form>
+                </li>
+            {% endif %}
+            {% if "date" in result %} 
+                <li>
+                    <form method="POST" action="">
+                    <div class="result">
+                        <p> Type: Movie </p>
                         <p> Name: {{ result['name']}} </p>
-                        <p> Artist: {{ result['artist']}} </p>
+                        <p> Date: {{ result['date']}} </p>
+                        <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
                     </div>
-                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
-                </div>
-                <input type="hidden" name="submit" value={{ result }}>
-                </form>
-            </li>
-        {% endif %}
-        {% if "date" in result %} 
-            <li>
-                <form method="POST" action="">
-                <div class="result">
-                    <p> Type: Movie </p>
-                    <p> Name: {{ result['name']}} </p>
-                    <p> Date: {{ result['date']}} </p>
-                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
-                </div>
-                <input type="hidden" name="submit" value={{ result }}>
-                </form>
-            </li>
-        {% endif %}
-        {% if "episodes" in result %} 
-            <li>
-                <form method="POST" action="">
-                <div class="result">
-                    <p> Type: Anime </p>
-                    <p> Name: {{ result['name']}} </p>
-                    <p> Rating: {{ result['rating']}}/ 70</p>
-                    <p> Episodes: {{ result['episodes']}} </p>
-                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
-                </div>
-                <input type="hidden" name="submit" value={{ result }}>
-                </form>
-            </li>
-        {% endif %}
-        {% if "author" in result %} 
-            <li>
-                <form method="POST" action="">
-                <div class="result">
-                    <input type="image" class="result_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
-                    <p> Type: Book </p>
-                    <p> Name: {{ result['name']}} </p>
-                    <p> Author(s): {{ result['author']}}/ 70</p>
-                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
-                </div>
-                <input type="hidden" name="submit" value={{ result }}>
-                </form>
-            </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+                    <input type="hidden" name="submit" value={{ result }}>
+                    </form>
+                </li>
+            {% endif %}
+            {% if "episodes" in result %} 
+                <li>
+                    <form method="POST" action="">
+                    <div class="result">
+                        <input type="image" class="result_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                        <div class="result_text">
+                            <p class="r_text"> Type: Anime </p>
+                            <p class="r_text"> Name: {{ result['name']}} </p>
+                            <p class="r_text"> Rating: {{ result['rating']}}/ 70</p>
+                            <p class="r_text"> Episodes: {{ result['episodes']}} </p>
+                            <p class="r_text"> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="submit" value={{ result }}>
+                    </form>
+                </li>
+            {% endif %}
+            {% if "author" in result %} 
+                <li>
+                    <form method="POST" action="">
+                    <div class="result">
+                        <input type="image" class="result_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                        <div class="result_text">
+                            <p id="main"> {{ result['name']}} </p>
+                            <p> by {{ result['author']}}</p>
+                            <p> <a href="{{ result['link'] }}"> Find it here </a></p>
+                            <p> Type: Book </p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="submit" value={{ result }}>
+                    </form>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
 {% endblock content %}

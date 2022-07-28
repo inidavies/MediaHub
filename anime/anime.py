@@ -31,7 +31,7 @@ def process_anime(animeName):
             image = anime_info[3]
             current_anime = {"name": name, "rating": rating,
                             "episodes": episodeCount, "link": trailer,
-                            "image": image}
+                            "thumbnail": image}
             data_container.append(current_anime)
 
     return data_container
