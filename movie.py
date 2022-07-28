@@ -20,6 +20,7 @@ TRAILER_URL_C = f'api_key={MOVIE_API_KEY}&language=en-US'
 __all__ = ['get_movies']
 
 def get_movies(movie_input):
+        global df
         TITLE_URL_D = f"query={movie_input}&include_adult=false"
         data_container = []
         i = 0
@@ -56,3 +57,20 @@ def get_movies(movie_input):
             return -1
         
         return data_container
+
+'''
+get_movies("Thor")
+def create_database():
+    global df
+    """Creates database"""
+    engine = db.create_engine("sqlite:///savedlist.db")
+
+    # Create and send sql table from your dataframe
+    df.to_sql("movies", con=engine, if_exists='replace', index=False)
+
+    # Return Database Query
+    return engine.execute(f"SELECT * FROM movies;").fetchall()
+
+c = create_database()
+print(c)
+'''
