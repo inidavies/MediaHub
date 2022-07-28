@@ -9,7 +9,7 @@ import os
 from recipes import get_recipes
 from movies import get_movies
 from music import get_music
-
+from anime import get_anime
 
 # Variables to be used globally
 Search_Term = ""
@@ -31,18 +31,18 @@ def search_bar():
         if Search_Type == "all":
             book_results = []
             movie_results = get_movies(Search_Term)
-            show_results = []
+            anime_results = get_anime(Search_Term)
             music_results = get_music(Search_Term)
             recipe_results = get_recipes(Search_Term)
-            results_pt1 = book_results + movie_results + show_results
+            results_pt1 = book_results + movie_results + anime_results
             results_pt2 = music_results + recipe_results
             Search_Results =  results_pt1 + results_pt2
         elif Search_Type == "books":
             Search_Results = []
         elif Search_Type == "movies":
             Search_Results = get_movies(Search_Term)
-        elif Search_Type == "shows":
-            Search_Results = []
+        elif Search_Type == "anime":
+            Search_Results = get_anime(Search_Term)
         elif Search_Type == "music":
             Search_Results = get_music(Search_Term)
         elif Search_Type == "recipes":
@@ -73,13 +73,22 @@ def home():
 # Inspiration board webpage function
 @app.route("/results/<type>", methods=['GET', 'POST'])
 def results(type):
-    #print(Search_Results)
+    global Search_Term
+    global Search_Type
+
+    # Search bar function
+    search = search_bar()
+    if search == True:
+        return redirect(url_for("results", type=type, search_term=Search_Term))
+
     return render_template('results.html', results=Search_Results)
 
 
 # Author credit webpage function
 @app.route("/lists", methods=['GET', 'POST'])
 def lists():
+    #Seatrch the list
+
     return render_template('lists.html')
 
 

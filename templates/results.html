@@ -2,13 +2,47 @@
 {% block content %}
 <ul>
     {% for result in results %} 
+        {% if "description" in result %} 
             <li>
                 <div class="result">
+                    <p> Type: Recipe </p>
                     <p> Name: {{ result['name']}} </p>
                     <p> Description: {{ result['description']}} </p>
                     <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
                 </div>
             </li>
+        {% endif %}
+        {% if "artist" in result %} 
+            <li>
+                <div class="result">
+                    <p> Type: Music </p>
+                    <p> Name: {{ result['name']}} </p>
+                    <p> Artist: {{ result['artist']}} </p>
+                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                </div>
+            </li>
+        {% endif %}
+        {% if "date" in result %} 
+            <li>
+                <div class="result">
+                    <p> Type: Movie </p>
+                    <p> Name: {{ result['name']}} </p>
+                    <p> Date: {{ result['date']}} </p>
+                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                </div>
+            </li>
+        {% endif %}
+        {% if "episodes" in result %} 
+            <li>
+                <div class="result">
+                    <p> Type: Anime </p>
+                    <p> Name: {{ result['name']}} </p>
+                    <p> Rating: {{ result['rating']}}/ 70</p>
+                    <p> Episodes: {{ result['episodes']}} </p>
+                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                </div>
+            </li>
+        {% endif %}
     {% endfor %}
 </ul>
 {% endblock content %}

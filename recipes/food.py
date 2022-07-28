@@ -23,7 +23,7 @@ def get_recipes(ingredient):
 def request_recipes(ingredient):
     ''' This should return a dictionary of recipes '''
     # Specifies the query string and the size of the results expected
-    querystring = {"from": "0", "size": "10", "q": ingredient}
+    querystring = {"from": "0", "size": "30", "q": ingredient}
 
     headers = {
         "X-RapidAPI-Key": API_KEY,

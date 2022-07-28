@@ -53,9 +53,10 @@ body{
 }
 
 .labels{
+    width: 50vw;
     color: #480355;
     margin-bottom: 1vh;
-    font-size: 1.1em;
+    font-size: 1.1vw;
 }
 .labels button{
     color: #480355;
@@ -63,6 +64,7 @@ body{
     margin-right: 2.5vw;
     background: transparent;
     border-radius: 5px;
+    border: solid 1px #480355;
 }
 .all{
     width: 3vw;
@@ -72,7 +74,7 @@ body{
     color:white;
 }
 .labels span{
-    margin-left: 2vw;
+    margin-left: 4vw;
     margin-right: 1vw;
 }
 .add_instr{
