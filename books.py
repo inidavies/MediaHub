@@ -6,44 +6,46 @@ import sqlalchemy as db
 import urllib.request
 from pprint import pprint
 
+BOOK_API_KEY = os.environ.get('BOOK_API_KEY')
+
 #book_apikey = os.environ.get('BOOK_APIKEY')
-search = input("Please enter a book title ?")
 #defining a function to access the api and send a get request
-def find_books():
-        url = f'https://www.googleapis.com/books/v1/volumes?q={search}&key=AIzaSyD_3CEF5P_6azVom7nW_Hs-ECYrXSAbm_M'
+def find_books(search):
+        base_url = "https://www.googleapis.com/books/v1/volumes?q=" 
+        url = base_url + search + "&key=" + BOOK_API_KEY
         #send request to API
         response = requests.get(url)
         #parse json into python as dictionary 
         book_data = response.json()
-        pprint(book_data['items'])
-        '''
+        #pprint(book_data['items'])
         book_info = book_data["items"]
-        #author = book_info["authors"]
         data_container = []
         for book in book_info:
-                book_title = book["volumeInfo"]["title"]
-                book_author = book["volumeInfo"]["authors"]
-                book_purchase = book["volumeInfo"]["buyLink"] 
-                book_coverphoto = book["volumeInfo"]["thumbnail"]
-                current_book = {"name":book_title, "author":book_author, "link":book_purchase, "image":book_coverphoto }
-                print(current_book)
-                print()
+                book_details = book["volumeInfo"]
+                if "title" in book_details and "authors" in book_details and "previewLink" in book_details and "imageLinks" in book_details:
+                        images = book_details["imageLinks"]
+                        if "thumbnail" in images:
+                                book_title = book_details["title"]
+                                authors = book_details["authors"]
 
+                                book_authors = authors[0]
+                                if len(authors) > 1:
+                                        for author in authors:
+                                                book_authors = ", " + author
+
+                                book_purchase = book_details['previewLink'] 
+                                book_coverphoto = images["thumbnail"]
+                                current_book = {"name":book_title, "author":book_authors, "link":book_purchase, "image":book_coverphoto }
                 
-                
+                data_container.append(current_book)
+
+        return data_container
+
+def get_books(search):
+        response = find_books(search)
+        if type(response) == list:
+                return response
+        else:
+                return -1
 
 
-
-
-
-
-        #print(f"\nTitle: {book_info['title']}")
-        #print(f"Author: {author}")
-        #print(f"\nBuyLink: {book_info['buyLink']}")
-        #print(f"\ncoverPhoto: {book_info['thumbnail']}")
-
-        #print(data['items']['volumeInfo']['title'])
-
-       
-'''
-find_books()                    
