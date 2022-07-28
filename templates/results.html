@@ -60,6 +60,20 @@
                 </form>
             </li>
         {% endif %}
+        {% if "author" in result %} 
+            <li>
+                <form method="POST" action="">
+                <div class="result">
+                    <input type="image" class="result_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                    <p> Type: Book </p>
+                    <p> Name: {{ result['name']}} </p>
+                    <p> Author(s): {{ result['author']}}/ 70</p>
+                    <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                </div>
+                <input type="hidden" name="submit" value={{ result }}>
+                </form>
+            </li>
+        {% endif %}
     {% endfor %}
 </ul>
 {% endblock content %}

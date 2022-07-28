@@ -10,6 +10,7 @@ from recipes import get_recipes
 from movies import get_movies
 from music import get_music
 from anime import get_anime
+from books import get_books
 
 # Variables to be used globally
 Search_Term = ""
@@ -29,7 +30,7 @@ def search_bar():
         Search_Type = request.form.get('list_type')
         Search_Term = request.form.get('search_bar')
         if Search_Type == "all":
-            book_results = []
+            book_results = get_books(Search_Term)
             movie_results = get_movies(Search_Term)
             anime_results = get_anime(Search_Term)
             music_results = get_music(Search_Term)
@@ -38,7 +39,7 @@ def search_bar():
             results_pt2 = music_results + recipe_results
             Search_Results =  results_pt1 + results_pt2
         elif Search_Type == "books":
-            Search_Results = []
+            Search_Results = get_books(Search_Term)
         elif Search_Type == "movies":
             Search_Results = get_movies(Search_Term)
         elif Search_Type == "anime":
