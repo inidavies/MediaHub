@@ -58,8 +58,8 @@ def get_movies(movie_input):
         
         return data_container
 
-'''
-get_movies("Thor")
+
+
 def create_database():
     global df
     """Creates database"""
@@ -73,4 +73,4 @@ def create_database():
 
 c = create_database()
 print(c)
-'''
+
