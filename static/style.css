@@ -130,3 +130,32 @@ body{
     border-radius: 0;
     background-position: 100% center;
 }
+ul{
+    list-style-type: none;
+}
+.result{
+    width: 45vw;
+    margin: 5vh 0 3vh 24.5vw;
+    background-color: #119DA4;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 3vh;
+    border-radius: 10px;
+}
+.result_img{
+    border: solid 1px black;
+    width: 10vw;
+    height: 15vh;
+    border-radius: 10px;
+    margin-right: 2vw;
+    float: left;
+}
+.result_item{
+    
+}
+.result_text{
+    font-size: 1em;
+    width: 40vw;
+    height: 30vh;
+    white-space: initial;
+}
