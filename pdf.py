@@ -4,28 +4,26 @@ import movie
 
 def main():
   movie.get_movies('Thor')
-  c = movie.create_database()
+  database = movie.create_database()
   dicts = []
-  keys = range(len(movie.create_database()))
-  values = [1, 2, 3]
-  for i in c:
-    x = i[0]
-    y = i[1]
-    z = i[2]
-    dicts.append({'1' : x, '2' : y, '3' : z})
+  for i in database:
+    Title = i[0]
+    Release = i[1]
+    Trailer = i[2]
+    dicts.append({'Movie' : Title, 'Release_Date' : Release, 'Trailer_Link' : Trailer})
   '''print(dicts)'''
+  api_key = "22c0MTQ5MDoxNDg4OjVWMkxOV0tXY256VU54Q1Q"
 
-  api_key = "701aMTQ3NjoxNDc0OmhCQTRnY3RMb29SdllBdTk"
   data = {
-    "movie": dicts[0]
-      }
+    "dicts": dicts
+  }
 
   json_payload = {
     "data": json.dumps(data) ,
     "output_file": "output.pdf",
     "export_type": "json",
     "expiration": 1440,
-    "template_id": "e2a77b2b1eb313c6"
+    "template_id": "b4a77b2b1e383910"
     }
 
   response = requests.post(
