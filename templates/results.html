@@ -13,7 +13,7 @@
                 {% if "dish" in result %} 
                     <li>
                         <div class="result">
-                            <input type="image" class="result_img result_item wider_img" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
                             <div class="result_text">
                                 <p class="result_item"> Type: Recipe </p>
                                 <p class="result_item"> Name: {{ result['dish']}} </p>
@@ -26,7 +26,7 @@
                 {% if "artist" in result %} 
                     <li>
                         <div class="result">
-                            <input type="image" class="result_img wider_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
                             <div class="result_text">
                                 <p> Type: Music </p>
                                 <p> Name: {{ result['name']}} </p>
@@ -51,7 +51,7 @@
                 {% if "episodes" in result %} 
                     <li>
                         <div class="result">
-                            <input type="image" class="result_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
                             <div class="result_text">
                                 <p class="r_text"> Type: Anime </p>
                                 <p class="r_text"> Name: {{ result['name']}} </p>
@@ -66,7 +66,7 @@
                 {% if "author" in result %} 
                     <li>
                         <div class="result">
-                            <input type="image" class="result_img result_item" src="{{ result['thumbnail'] }}" alt="" name="current_item">
+                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
                             <div class="result_text">
                                 <p id="main"> {{ result['name']}} </p>
                                 <p> by {{ result['author']}}</p>

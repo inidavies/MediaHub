@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .search__container{
+        display:none;
+    }
+</style>
+<ul>
+    {% for tile in display_tiles %} 
+            <li>
+                <div class="">
+                    <img class="result_img result_item" src="{{ tile['thumbnail'] }}" alt="">
+                    <div class="result_text">
+                        <p id="main"> {{ tile['name']}} </p>
+                        <p> by {{ tile['author']}}</p>
+                        <p> <a href="{{ tile['link'] }}"> Find it here </a></p>
+                        <p> Type: Book </p>
+                    </div>
+                </div>
+            </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

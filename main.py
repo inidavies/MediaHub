@@ -107,12 +107,12 @@ def home():
     global Search_Term
     global Search_Type
 
-    # Search bar function    
+    # Search bar function
     search = search_bar()
     if search == True:
-        return redirect(url_for("results", type=Search_Type, search_term=Search_Term))
+        return redirect(url_for("results"))
 
-    return render_template('home.html')
+    return render_template('home.html', list_books=url_for("books"))
 
 
 # Inspiration board webpage function
@@ -124,36 +124,42 @@ def results():
     # Search bar function    
     search = search_bar()
     if search == True:
-        return redirect(url_for("results", type=Search_Type, search_term=Search_Term))
-    
-    '''if request.method == 'POST':
-        if Search_Type == "all":
-            search = search_bar()
-            if search == True:
-                return redirect(url_for("results"))
-        else:
-            print("yes")
-            add_tile()'''
-
-
-    # Adding a result tile to the user's saved tiles
-    # add_tile()
+        return redirect(url_for("results"))
 
     return render_template('results.html', results=Search_Results, search_term=Search_Term)
 
 
-# Author credit webpage function
-@app.route("/lists", methods=['GET', 'POST'])
-def lists():
-    #Search the list
-    display_tiles = []
+# Displays all saved tiles
+@app.route("/all", methods=['GET', 'POST'])
+def all():
+    display_tiles = Saved_Tiles
+    return render_template('all.html', tiles= display_tiles)
 
-    for tile in Saved_Tiles:
-        display_tiles.append(get_table(tile))
+# Displays saved book tiles
+@app.route("/books", methods=['GET', 'POST'])
+def books():
+    display_tiles = Saved_Tiles["book"]
+    return render_template('books.html', tiles= display_tiles)
 
-    return render_template('lists.html', tiles= display_tiles)
+# Displays saved movie tiles
+@app.route("/movies", methods=['GET', 'POST'])
+def movies():
+    display_tiles = Saved_Tiles["movies"]
+    return render_template('movies.html', tiles= display_tiles)
 
+# Displays saved music tiles
+@app.route("/music", methods=['GET', 'POST'])
+def music():
+    display_tiles = Saved_Tiles["music"]
+    return render_template('music.html', tiles= display_tiles)
 
+# Displays saved recipes tiles
+@app.route("/recipes", methods=['GET', 'POST'])
+def recipes():
+    display_tiles = Saved_Tiles["recipes"]
+    return render_template('recipes.html', tiles= display_tiles)
+
+# User can manually add things here
 @app.route("/favs", methods=['GET', 'POST'])
 def edits():
     return render_template('edits.html')

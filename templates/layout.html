@@ -37,15 +37,17 @@
                         </label>
                     </div>
                 </form>
-                <form method="POST" action="">
-                    <div class="container">
-                            <input class="search__input" name="search_bar" placeholder="Search for something"/>
-                            <input type="hidden" name="list_type" value="all"/>
-                    </div>
-                    <div class="add_instr">
-                        <button type="button" name="manual">+</button><span id="add_text">Add one yourself</span>
-                    </div>
-                </form>
+                <div id="search_bar_case">
+                    <form method="POST" action="">
+                        <div class="container">
+                                <input class="search__input" name="search_bar" placeholder="Search for something"/>
+                                <input type="hidden" name="list_type" value="all"/>
+                        </div>
+                        <div class="add_instr">
+                            <button type="button" name="manual">+</button><span id="add_text">Add one yourself</span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         {% block content %}{% endblock %}
