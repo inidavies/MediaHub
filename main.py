@@ -48,7 +48,6 @@ def search_bar():
             Search_Results = get_music(Search_Term)
         elif Search_Type == "recipes":
             Search_Results = get_recipes(Search_Term)
-            print(Search_Results)
         return True
     
 

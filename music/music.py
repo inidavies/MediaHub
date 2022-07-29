@@ -14,7 +14,7 @@ def request_music(name):
     data_container=[]
     base_url = "https://www.youtube.com/watch?v="
     music_data = music(name)
-    print(music_data[0]["thumbnails"])
+    #print(music_data[0]["thumbnails"])
     for song in music_data:
         songName = song['title']
         mainArtist = song['artists'][0]['name']
@@ -32,4 +32,4 @@ def get_music(name):
     else:
         return -1
 
-print(get_music("Sia"))
+#print(get_music("Sia"))

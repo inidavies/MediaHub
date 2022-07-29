@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import sqlalchemy as db
 import os
+from pprint import pprint
 
 #  Dataframe
 col_names = ['Title', 'Release Date', 'Trailer']
@@ -56,3 +57,5 @@ def get_movies(movie_input):
             return -1
         
         return data_container
+
+# get_movies("Thor")

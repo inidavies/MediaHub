@@ -3,8 +3,9 @@ import os
 import re
 from pprint import pprint
 
-API_KEY = os.environ.get('RECIPE_API_KEY')
-API_HOST = os.environ.get('RECIPE_API_HOST')
+RECIPE_API_KEY = os.environ.get('RECIPE_API_KEY')
+RECIPE_API_HOST = os.environ.get('RECIPE_API_HOST')
+
 URL = "https://tasty.p.rapidapi.com/recipes/list"
 
 # defining import * for the __init__.py file (to obscure other functions)
@@ -30,8 +31,8 @@ def request_recipes(ingredient):
     querystring = {"q":ingredient, "imageSize":"THUMBNAIL"}
 
     headers = {
-        "X-RapidAPI-Key": "2f0847bcc5mshe005ab687e03bf2p1f34dejsn709aedc05a6a",
-        "X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com"
+        "X-RapidAPI-Key": RECIPE_API_KEY,
+        "X-RapidAPI-Host": RECIPE_API_HOST
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
@@ -61,36 +62,3 @@ def process_json(recipe_list):
     return data_container
 
 #pprint(request_recipes("rice"))
-#pprint(get_recipes("rice"))
-'''
-import requests
-from pprint import pprint
-
-url = "https://edamam-recipe-search.p.rapidapi.com/search"
-
-querystring = {"q":"chicken", "imageSize":"SMALL"}
-
-headers = {
-	"X-RapidAPI-Key": "2f0847bcc5mshe005ab687e03bf2p1f34dejsn709aedc05a6a",
-	"X-RapidAPI-Host": "edamam-recipe-search.p.rapidapi.com"
-}
-
-response = requests.request("GET", url, headers=headers, params=querystring)
-
-pprint(response.json()["hits"][0])
-'''
-
-'''from py_edamam import Edamam
-from pprint import pprint
-e = Edamam(recipes_appid='62dfd4d9',
-           recipes_appkey='097906ea45712e4232a85c3b80df858c')
-
-recipes_list = e.search_recipe("onion and chicken")
-
-# keys scrapped from web demo, but you can provide yours above
-nutrient_data = e.search_nutrient("1 large apple")
-
-foods_list = e.search_food("chocolate")
-pprint(recipes_list["hits"][5]["recipe"]["image"])
-
-'''
