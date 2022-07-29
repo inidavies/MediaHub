@@ -157,6 +157,10 @@ hr{
     padding-top: 0;
     border-bottom: solid 1px black;
 }
+.result button{
+    background-color: #480355 ;
+    color: white
+}
 .result_img{
     border: solid 1px black;
     width: 6.7vw;

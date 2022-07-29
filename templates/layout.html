@@ -43,7 +43,7 @@
                             <input type="hidden" name="list_type" value="all"/>
                     </div>
                     <div class="add_instr">
-                        <button type="button" name="Add">+</button><span>Add one yourself</span>
+                        <button type="button" name="manual">+</button><span id="add_text">Add one yourself</span>
                     </div>
                 </form>
             </div>
@@ -56,6 +56,15 @@
       {
         document.getElementsByName('list_type')[0].value = type; 
         document.getElementsByName('search_bar')[0].placeholder = 'Search in ' + type; 
+        document.getElementById('add_text').innerText= 'Add ' + type + ' yourself'; 
+      }
+
+      function add_tile(type, result)
+      {
+          document.getElementsByName("tile_content")[0].value = result;
+          document.getElementsByName("type")[0].value = type;
+
+          document.getElementById("hide").submit();
       }
   </script>
 </html>
