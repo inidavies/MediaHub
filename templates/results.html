@@ -40,6 +40,7 @@
                 {% if "date" in result %} 
                     <li>
                         <div class="result">
+                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
                             <p> Type: Movie </p>
                             <p> Name: {{ result['name']}} </p>
                             <p> Date: {{ result['date']}} </p>
@@ -80,7 +81,7 @@
             {% endfor %}
         </ul>
     </form>
-    <form method="POST" action="" id="hide">
+    <form method="POST" action="" id="hide" onsubmit="return false;">
         <input type="hidden" name="tile_content" value=""/>
         <input type="hidden" name="type" value="" />
     </form>

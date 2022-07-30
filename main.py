@@ -85,10 +85,8 @@ def add_tile():
         saved_links.append(tile["link"])
     
     # Add if the current link is not in the saved tiles
-    print(saved_links)
     if new_tile["link"] not in saved_links:
         Saved_Tiles[tile_type].append(new_tile)
-        print(Saved_Tiles)
         #Create db tables and retrieve info from item
         create_tables(Saved_Tiles)
 
