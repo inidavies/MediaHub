@@ -32,9 +32,14 @@ def get_movies(movie_input):
             while i < len(request['results']):
                 current_id = request['results'][i]['id']
                 TRAILER_URL_B = f"movie/{current_id}/videos?active_nav_item=Trailers&"
+                IMAGE_URL_A = f'https://api.themoviedb.org/3/movie/{current_id}?'
                 data = requests.get(TRAILER_URL_A + TRAILER_URL_B + TRAILER_URL_C)
+                img = requests.get(IMAGE_URL_A + TRAILER_URL_C)
+                img_request = img.json()
                 vid_request = data.json()
                 movie_id = request['results'][i]['original_title']
+                poster = img_request['poster_path']
+                poster_url = f'https://image.tmdb.org/t/p/original{poster}'
                 j = 0
                 key = ''
                 #  To get the trailers from each movie
@@ -49,8 +54,10 @@ def get_movies(movie_input):
                     movie_name = request['results'][i]['original_title']
                     movie_date = request['results'][i]['release_date']
                     movie_link = youtube + key
+                    movie_img = poster_url
                     df.loc[len(df.index)] = [movie_name, movie_date, movie_link]
-                    current_movie = {"name": movie_name, "date": movie_date, "link": movie_link}
+                    current_movie = {"name": movie_name, "date": movie_date, 
+                                     "link": movie_link, 'thumbnail': movie_img}
                     data_container.append(current_movie)
                 i += 1
         except IndexError:
@@ -58,4 +65,4 @@ def get_movies(movie_input):
         
         return data_container
 
-# get_movies("Thor")
+print(get_movies("Thor"))
