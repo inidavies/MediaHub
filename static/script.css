@@ -148,7 +148,7 @@ ul{
 hr{
     margin-left: 0;
 }
-.result, .tile{
+.result{
     width: 50vw;
     height: 20vh;
     padding-left: 1vw;
@@ -171,14 +171,11 @@ hr{
 }
 .result_text, .list_text{
     width: 100%;
+    font-size: 2vh;
 }
-#main{
+.main{
     font-size: 2em;
     margin-bottom: 0;
-}
-.wider_img{
-    width: 10vw;
-    height: 20vh;
 }
 .wider_img{
     width: 10vw;
@@ -187,17 +184,11 @@ hr{
 .tile{
     width: 50vw;
     display:inline-block;
-    font-size: 3.2vh;
-    margin-top: 3vh;
-    padding-bottom: 3vh;
-}
-.list_main{
-    font-size: 4vh;
 }
 
 .tile_container{
     border-top: none;
-    margin: 20vh 0 3vh 17vw;
+    margin: 20vh 0 3vh 20vw;
 }
 .list_img{
 }

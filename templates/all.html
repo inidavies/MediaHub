@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .search__container{
+        display:none;
+    }
+</style>
+<div class="tile_container">
+<ul>
+            {% for type in tiles %} 
+                {% for tile in type %} 
+                    {% if "dish" in tile %} 
+                        <li>
+                            <div class="tile">
+                                <img class="list_img list" src="{{ tile[2] }}" alt="">
+                                <div class="list_text">
+                                    <p> Type: Recipe </p>
+                                    <p> Name: {{ tile[0]}} </p>
+                                    <p> Link: <a href="{{ tile[1] }}"> Find it here </a></p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if "artist" in tile %} 
+                        <li>
+                            <div class="tile">
+                                <img class="list_img list" src="{{ tile[3] }}" alt="">
+                                <div class="list_text">
+                                    <p> Type: Music </p>
+                                    <p> Name: {{ tile[0]}} </p>
+                                    <p> Artist: {{ tile[1]}} </p>
+                                </div>
+                                <p><a href="{{ tile[2] }}"> Find it here </a></p>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if "date" in tile %} 
+                        <li>
+                            <div class="tile">
+                                <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
+                                <div class="list_text">
+                                    <p class="list_main"> {{ tile[0]}} </p>
+                                    <p> by {{ tile[1]}}</p>
+                                    <p> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                    <p> Type: Movie </p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if "episodes" in tile %} 
+                        <li>
+                            <div class="tile">
+                                <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
+                                <div class="list_text">
+                                    <p class="r_text"> Type: Anime </p>
+                                    <p class="r_text"> Name: {{ tile[0]}} </p>
+                                    <p class="r_text"> Rating: {{ tile[1]}}/ 70</p>
+                                    <p class="r_text"> Episodes: {{ tile['episodes']}} </p>
+                                    <p class="r_text"> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if "author" in tile %} 
+                        <li>
+                            <div class="tile">
+                                <img class="list_img list" src="{{ tile[3] }}" alt="">
+                                <div class="list_text">
+                                    <p class="list_main"> {{ tile[0]}} </p>
+                                    <p> by {{ tile[1]}}</p>
+                                    <p> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                    <p> Type: Book </p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+</ul>
+</div>
+{% endblock content %}

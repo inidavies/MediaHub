@@ -18,7 +18,7 @@ from db import get_table
 Search_Term = ""
 Search_Type = ""
 Search_Results = []
-Saved_Tiles = {"book":[], "music":[], "movie":[], "anime":[], "food":[]}
+Saved_Tiles = {"book":[], "music":[], "movie":[], "anime":[], "recipe":[]}
 
 # Create a flask app for the website
 app = Flask(__name__)
@@ -112,7 +112,14 @@ def home():
     if search == True:
         return redirect(url_for("results"))
 
-    return render_template('home.html', list_books=url_for("books"))
+    return render_template('home.html', results=Search_Results, 
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 
 # Inspiration board webpage function
@@ -126,43 +133,118 @@ def results():
     if search == True:
         return redirect(url_for("results"))
 
-    return render_template('results.html', results=Search_Results, search_term=Search_Term)
+    return render_template('results.html', results=Search_Results, 
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 
 # Displays all saved tiles
 @app.route("/all", methods=['GET', 'POST'])
 def all():
-    display_tiles = Saved_Tiles
-    return render_template('all.html', tiles= display_tiles)
+    display_tiles = []
+    for type in Saved_Tiles:
+        if Saved_Tiles[type] != []:
+            display_tiles.append(get_table(type))
+    return render_template('all.html', tiles= display_tiles,
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 # Displays saved book tiles
 @app.route("/books", methods=['GET', 'POST'])
 def books():
-    display_tiles = Saved_Tiles["book"]
-    return render_template('books.html', tiles= display_tiles)
+    display_tiles = []
+    if Saved_Tiles["book"] != []:
+        display_tiles = get_table("book")
+    return render_template('books.html', tiles= display_tiles,
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 # Displays saved movie tiles
 @app.route("/movies", methods=['GET', 'POST'])
 def movies():
-    display_tiles = Saved_Tiles["movies"]
-    return render_template('movies.html', tiles= display_tiles)
+    display_tiles = []
+    if Saved_Tiles["movie"] != []:
+        display_tiles = get_table("movie")
+    return render_template('movies.html', tiles= display_tiles,
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 # Displays saved music tiles
 @app.route("/music", methods=['GET', 'POST'])
 def music():
-    display_tiles = Saved_Tiles["music"]
-    return render_template('music.html', tiles= display_tiles)
+    display_tiles = []
+    if Saved_Tiles["music"] != []:
+        display_tiles = get_table("music")
+    return render_template('music.html', tiles= display_tiles,
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
+
+# Displays saved anime tiles
+@app.route("/anime", methods=['GET', 'POST'])
+def anime():
+    display_tiles = []
+    if Saved_Tiles["anime"] != []:
+        display_tiles = get_table("anime")
+    return render_template('anime.html', tiles= display_tiles,
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 # Displays saved recipes tiles
 @app.route("/recipes", methods=['GET', 'POST'])
 def recipes():
-    display_tiles = Saved_Tiles["recipes"]
-    return render_template('recipes.html', tiles= display_tiles)
+    display_tiles = []
+    if Saved_Tiles["recipe"] != []:
+        display_tiles = get_table("recipe")
+    return render_template('recipes.html', tiles=display_tiles,
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 # User can manually add things here
 @app.route("/favs", methods=['GET', 'POST'])
 def edits():
-    return render_template('edits.html')
+    return render_template('edits.html',
+                           search_term=Search_Term, 
+                           list_books=url_for("books"),
+                           list_all=url_for("all"),
+                           list_movies=url_for("movies"),
+                           list_music=url_for("music"),
+                           list_anime=url_for("anime"),
+                           list_recipes=url_for("recipes"))
 
 
 if __name__ == '__main__':

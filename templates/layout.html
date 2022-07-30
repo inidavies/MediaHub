@@ -17,6 +17,7 @@
             <a href="{{ list_books }}"> Books </a>
             <a href="{{ list_movies }}"> Movies </a>0
             <a href="{{ list_music }}"> Music </a>
+            <a href="{{ list_anime }}"> Anime </a>
             <a href="{{ list_recipes }}"> Recipes </a>
         </div>
     </nav>
@@ -67,6 +68,7 @@
           document.getElementsByName("type")[0].value = type;
 
           document.getElementById("hide").submit();
+          return false;
       }
   </script>
 </html>
