@@ -1,89 +1,95 @@
 {% extends "layout.html" %}
 {% block content %}
-<p id="search_summ" > 
-    Showing 
-    <span style="color:#FFC145">{{ results|length }}</span>
-     results for 
-    <span style="text-transform:capitalize; color:#FFC145;">" {{ search_term }} "</span>
-</p>
-<div class="result_container">
-    <form method="POST" action="" id="nameform">
-        <ul>
-            {% for result in results %} 
-                {% if "dish" in result %} 
-                    <li>
-                        <div class="result">
-                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
-                            <div class="result_text">
-                                <p class="result_item"> Type: Recipe </p>
-                                <p class="result_item"> Name: {{ result['dish']}} </p>
-                                <p class="result_item"> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+{% if results == -1 %}
+    <div class="no_results">
+        <p> Hmm, no results for that </p>
+    </div>
+{% else %}
+        <form method="POST" action="" id="nameform">
+            <ul>
+                <p id="search_summ" > 
+                    Showing 
+                    <span style="color:#FFC145">{{ results|length }}</span>
+                    results for 
+                    <span style="text-transform:capitalize; color:#FFC145;">" {{ results[0]['search'] }} "</span>
+                </p>
+                <div class="result_container">
+                {% for result in results %} 
+                    {% if "dish" in result %} 
+                        <li>
+                            <div class="result">
+                                <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
+                                <div class="result_text">
+                                    <p class="result_item"> Type: Recipe </p>
+                                    <p class="result_item"> Name: {{ result['dish']}} </p>
+                                    <p class="result_item"> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
+                                </div>
+                                <button id="save{{ loop.index0 }}" type="submit" onclick="add_tile('recipe', {{ loop.index0 }}); return false;" name="add">Save</button>
                             </div>
-                            <button type="submit" onclick="add_tile('recipe', {{ loop.index0 }}); return false;" name="add">Save</button>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if "artist" in result %} 
-                    <li>
-                        <div class="result">
-                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
-                            <div class="result_text">
-                                <p> Type: Music </p>
+                        </li>
+                    {% endif %}
+                    {% if "artist" in result %} 
+                        <li>
+                            <div class="result">
+                                <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
+                                <div class="result_text">
+                                    <p> Type: Music </p>
+                                    <p> Name: {{ result['name']}} </p>
+                                    <p> Artist: {{ result['artist']}} </p>
+                                </div>
+                                <p><a href="{{ result['link'] }}"> Find it here </a></p>
+                                <button id="save{{ loop.index0 }}" type="submit" onclick="add_tile('music', {{ loop.index0 }}); return false;" name="add">Save</button>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if "date" in result %} 
+                        <li>
+                            <div class="result">
+                                <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
+                                <p> Type: Movie </p>
                                 <p> Name: {{ result['name']}} </p>
-                                <p> Artist: {{ result['artist']}} </p>
-                            </div>
-                            <p><a href="{{ result['link'] }}"> Find it here </a></p>
-                            <button type="submit" onclick="add_tile('music', {{ loop.index0 }}); return false;" name="add">Save</button>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if "date" in result %} 
-                    <li>
-                        <div class="result">
-                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
-                            <p> Type: Movie </p>
-                            <p> Name: {{ result['name']}} </p>
-                            <p> Date: {{ result['date']}} </p>
-                            <p> <a href="{{ result['link'] }}"> Find it here </a></p>
-                            <button type="submit" onclick="add_tile('movie', {{ loop.index0 }}); return false;" name="add">Save</button>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if "episodes" in result %} 
-                    <li>
-                        <div class="result">
-                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
-                            <div class="result_text">
-                                <p class="r_text"> Type: Anime </p>
-                                <p class="r_text"> Name: {{ result['name']}} </p>
-                                <p class="r_text"> Rating: {{ result['rating']}}/ 70</p>
-                                <p class="r_text"> Episodes: {{ result['episodes']}} </p>
-                                <p class="r_text"> <a href="{{ result['link'] }}"> Find it here </a></p>
-                            </div>
-                            <button type="submit" onclick="add_tile('anime', {{ loop.index0 }}); return false;" name="add">Save</button>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if "author" in result %} 
-                    <li>
-                        <div class="result">
-                            <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
-                            <div class="result_text">
-                                <p class="main"> {{ result['name']}} </p>
-                                <p> by {{ result['author']}}</p>
+                                <p> Date: {{ result['date']}} </p>
                                 <p> <a href="{{ result['link'] }}"> Find it here </a></p>
-                                <p> Type: Book </p>
+                                <button id="save{{ loop.index0 }}" type="submit" onclick="add_tile('movie', {{ loop.index0 }}); return false;" name="add">Save</button>
                             </div>
-                            <button type="submit" onclick="add_tile('book', {{ loop.index0 }}); return false;" name="add">Save</button>
-                        </div>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </form>
-    <form method="POST" action="" id="hide" onsubmit="return false;">
-        <input type="hidden" name="tile_content" value=""/>
-        <input type="hidden" name="type" value="" />
-    </form>
-</div>
+                        </li>
+                    {% endif %}
+                    {% if "episodes" in result %} 
+                        <li>
+                            <div class="result">
+                                <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
+                                <div class="result_text">
+                                    <p class="r_text"> Type: Anime </p>
+                                    <p class="r_text"> Name: {{ result['name']}} </p>
+                                    <p class="r_text"> Rating: {{ result['rating']}}/ 70</p>
+                                    <p class="r_text"> Episodes: {{ result['episodes']}} </p>
+                                    <p class="r_text"> <a href="{{ result['link'] }}"> Find it here </a></p>
+                                </div>
+                                <button id="save{{ loop.index0 }}" type="submit" onclick="add_tile('anime', {{ loop.index0 }}); return false;" name="add">Save</button>
+                            </div>
+                        </li>
+                    {% endif %}
+                    {% if "author" in result %} 
+                        <li>
+                            <div class="result">
+                                <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
+                                <div class="result_text">
+                                    <p class="main"> {{ result['name']}} </p>
+                                    <p> by {{ result['author']}}</p>
+                                    <p> <a href="{{ result['link'] }}"> Find it here </a></p>
+                                    <p> Type: Book </p>
+                                </div>
+                                <button id="save{{ loop.index0 }}" type="submit" onclick="add_tile('book', {{ loop.index0 }}); return false;" name="add">Save</button>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </form>
+        <form method="POST" action="" id="hide">
+            <input type="hidden" name="tile_content" value=""/>
+            <input type="hidden" name="type" value="" />
+        </form>
+    </div>
+{% endif %}
 {% endblock content %}

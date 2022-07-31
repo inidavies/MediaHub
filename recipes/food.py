@@ -18,7 +18,7 @@ def get_recipes(ingredient):
     response = request_recipes(ingredient)
 
     if type(response) is list:
-        processed_info = process_json(response)
+        processed_info = process_json(response, ingredient)
         return processed_info
     else:
         return -1
@@ -42,7 +42,7 @@ def request_recipes(ingredient):
     else:
         return str(response.status_code) + ': ' + str(response.reason)
 
-def process_json(recipe_list):
+def process_json(recipe_list, ingredient):
     """
     Extracts desired data from API response
     """
@@ -55,10 +55,14 @@ def process_json(recipe_list):
                 recipe_name = recipe["label"]
                 recipe_thumbnail = recipe["image"]
                 recipe_video = recipe["shareAs"]
-                current_recipe = {'dish': recipe_name,
+                current_recipe = {'dish':recipe_name,
                                 'link': recipe_video,
-                                'thumbnail': recipe_thumbnail}
+                                'thumbnail': recipe_thumbnail,
+                                "search":ingredient}
                 data_container.append(current_recipe)
+
+    if data_container == []:
+        data_container = -1
     return data_container
 
-#pprint(request_recipes("rice"))
+#print(get_recipes("rice"))

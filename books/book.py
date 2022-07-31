@@ -18,9 +18,15 @@ def find_books(search):
         url = base_url + search + "&key=" + BOOK_API_KEY
         #send request to API
         response = requests.get(url)
+        if response.status_code == 200:
+                data = response.json()
+                if data["totalItems"] != 0:
+                        return data
+        else:
+                str(response.status_code) + ': ' + str(response.reason)
+
+def process_books(book_data, search):
         #parse json into python as dictionary 
-        book_data = response.json()
-        #pprint(book_data['items'])
         book_info = book_data["items"]
         data_container = []
         current_book = {}
@@ -39,7 +45,7 @@ def find_books(search):
 
                                 book_purchase = book_details['previewLink'] 
                                 book_coverphoto = images["thumbnail"]
-                                current_book = {"name":book_title, "author":book_authors, "link":book_purchase, "thumbnail":book_coverphoto }
+                                current_book = {"name":book_title, "author":book_authors, "link":book_purchase, "thumbnail":book_coverphoto, "search": search}
                 
                 data_container.append(current_book)
 
@@ -47,9 +53,11 @@ def find_books(search):
 
 def get_books(search):
         response = find_books(search)
-        if type(response) == list:
-                return response
+        if type(response) == dict:
+                book_list = process_books(response, search)
+                return book_list
         else:
                 return -1
 
 
+# print(get_books("yes"))

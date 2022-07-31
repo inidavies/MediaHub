@@ -5,21 +5,27 @@
         display:none;
     }
 </style>
-<div class="tile_container">
-    <ul>
-        {% for tile in tiles %} 
-                <li>
-                    <div class="tile">
-                        <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
-                        <div class="list_text">
-                            <p class="list_main"> {{ tile[0]}} </p>
-                            <p> by {{ tile[1]}}</p>
-                            <p> <a href="{{ tile[2] }}"> Find it here </a></p>
-                            <p> Type: Movie </p>
+{% if tiles == [] %}
+    <div class = "empty_page">
+        <p> Hmm, you haven't saved any movies yet </p>
+    </div>
+{% else %}
+    <div class="tile_container">
+        <ul>
+            {% for tile in tiles %} 
+                    <li>
+                        <div class="tile">
+                            <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
+                            <div class="list_text">
+                                <p class="list_main"> {{ tile[0]}} </p>
+                                <p> by {{ tile[1]}}</p>
+                                <p> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                <p> Type: Movie </p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-        {% endfor %}
-    </ul>
-</div>
+                    </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 {% endblock content %}
