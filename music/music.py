@@ -20,7 +20,9 @@ def request_music(song_search):
         mainArtist = song['artists'][0]['name']
         videoLink = base_url + str(song['videoId'])
         image = song['thumbnails'][1]['url']
-        current_song = {"search": song_search, "name": songName, "artist": mainArtist, "link": videoLink, "thumbnail": image}
+        current_song = {"name": songName, "artist": mainArtist, 
+                        "link": videoLink, "thumbnail": image, 
+                        "search": song_search}
         data_container.append(current_song)
         
     return data_container

@@ -56,8 +56,9 @@ def get_movies(movie_input):
                     movie_link = youtube + key
                     movie_img = poster_url
                     df.loc[len(df.index)] = [movie_name, movie_date, movie_link]
-                    current_movie = {"search":movie_input,"name": movie_name, "date": movie_date, 
-                                     "link": movie_link, 'thumbnail': movie_img}
+                    current_movie = {"name": movie_name, "date": movie_date, 
+                                     "link": movie_link, 'thumbnail': movie_img
+                                     "search":movie_input}
                     data_container.append(current_movie)
                 i += 1
         except IndexError:

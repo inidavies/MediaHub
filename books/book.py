@@ -45,7 +45,7 @@ def process_books(book_data, search):
 
                                 book_purchase = book_details['previewLink'] 
                                 book_coverphoto = images["thumbnail"]
-                                current_book = {"search": search, "name":book_title, "author":book_authors, "link":book_purchase, "thumbnail":book_coverphoto }
+                                current_book = {"name":book_title, "author":book_authors, "link":book_purchase, "thumbnail":book_coverphoto, "search": search}
                 
                 data_container.append(current_book)
 
