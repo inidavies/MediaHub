@@ -57,7 +57,7 @@ def get_movies(movie_input):
                     movie_img = poster_url
                     df.loc[len(df.index)] = [movie_name, movie_date, movie_link]
                     current_movie = {"name": movie_name, "date": movie_date, 
-                                     "link": movie_link, 'thumbnail': movie_img
+                                     "link": movie_link, 'thumbnail': movie_img,
                                      "search":movie_input}
                     data_container.append(current_movie)
                 i += 1
