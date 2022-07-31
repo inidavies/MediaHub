@@ -66,8 +66,11 @@
       {
           document.getElementsByName("tile_content")[0].value = result;
           document.getElementsByName("type")[0].value = type;
-
+          id = "save"+result;
+          msg_id = "msg"+result;
+          document.getElementById(id).style.backgroundColor = 'grey';
           document.getElementById("hide").submit();
       }
+
   </script>
 </html>

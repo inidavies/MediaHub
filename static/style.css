@@ -90,7 +90,7 @@ body{
 
 .search__container {
     margin-top: 40vh;
-    margin-left: 30vw;
+    margin-left: 27vw;
     margin-bottom: 6vh;
 }
     
@@ -206,4 +206,12 @@ hr{
 }
 .list_main{
     font-size: 1.2em;
+}
+.empty_page{
+    margin: 48vh 0 0 27vw;
+    font-size: 3em;
+}
+.no_results{
+    margin: 14vh 0 0 34vw;
+    font-size: 3em;
 }

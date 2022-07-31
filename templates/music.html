@@ -5,6 +5,11 @@
         display:none;
     }
 </style>
+{% if tiles == [] %}
+    <div class = "empty_page">
+        <p> Hmm, you haven't saved any music yet </p>
+    </div>
+{% else %}
 <div class="tile_container">
     <ul>
         {% for tile in tiles %} 
@@ -22,4 +27,5 @@
         {% endfor %}
     </ul>
 </div>
+{% endif %}
 {% endblock content %}

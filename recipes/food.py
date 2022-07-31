@@ -59,6 +59,9 @@ def process_json(recipe_list):
                                 'link': recipe_video,
                                 'thumbnail': recipe_thumbnail}
                 data_container.append(current_recipe)
+
+    if data_container == []:
+        data_container = -1
     return data_container
 
 #pprint(request_recipes("rice"))

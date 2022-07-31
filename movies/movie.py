@@ -62,7 +62,9 @@ def get_movies(movie_input):
                 i += 1
         except IndexError:
             return -1
-        
+
+        if data_container == []:
+            data_container = -1
         return data_container
 
-print(get_movies("Thor"))
+# print(get_movies("ZXvfzxvZxvxxzvzxv"))

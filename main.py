@@ -34,13 +34,30 @@ def search_bar():
     if request.method == 'POST':
         if Search_Type == "all":
             book_results = get_books(Search_Term)
+            if book_results == -1:
+                book_results = []
+
             movie_results = get_movies(Search_Term)
+            if movie_results == -1:
+                movie_results = []
+
             anime_results = get_anime(Search_Term)
+            if anime_results == -1:
+                anime_results = []
+
             music_results = get_music(Search_Term)
+            if music_results == -1:
+                music_results = []
+
             recipe_results = get_recipes(Search_Term)
+            if recipe_results == -1:
+                recipe_results = []
+
             results_pt1 = book_results + movie_results + anime_results
             results_pt2 = music_results + recipe_results
             Search_Results =  results_pt1 + results_pt2
+            if Search_Results == []:
+                Search_Results = -1
             return True
 
         elif Search_Type == "books":
@@ -125,6 +142,7 @@ def home():
 def results():
     global Search_Term
     global Search_Type
+    global Search_Results
 
     # Search bar function    
     search = search_bar()
