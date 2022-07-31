@@ -69,7 +69,7 @@ body{
 .all{
     width: 3vw;
 }
-.labels button:hover{
+.labelbtn:hover{
     background: #480355;
     color:white;
 }

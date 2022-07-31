@@ -15,7 +15,7 @@
         <div class="pages">
             <a href="{{ list_all }}"> All </a>
             <a href="{{ list_books }}"> Books </a>
-            <a href="{{ list_movies }}"> Movies </a>0
+            <a href="{{ list_movies }}"> Movies </a>
             <a href="{{ list_music }}"> Music </a>
             <a href="{{ list_anime }}"> Anime </a>
             <a href="{{ list_recipes }}"> Recipes </a>
@@ -27,15 +27,13 @@
             <div class="CardInner">
                 <form method="POST" action="">
                     <div class="labels">
-                        <label>
                             <span>Filter By:</span>
-                            <button class="all"  onclick="choose_type('all'); return false;">All</button>
-                            <button class="books" onclick="choose_type('books'); return false;">Books</button> 
-                            <button class="movies" onclick="choose_type('movies'); return false;">Movies</button>   
-                            <button class="music" onclick="choose_type('music'); return false;">Music</button>
-                            <button class="anime" onclick="choose_type('anime'); return false;">Anime</button>
-                            <button class="recipes" onclick="choose_type('recipes'); return false;">Recipes</button> 
-                        </label>
+                            <button class="all labelbtn"  onclick="choose_type('all'); return false;">All</button>
+                            <button class="books labelbtn" onclick="choose_type('books'); return false;">Books</button> 
+                            <button class="movies labelbtn" onclick="choose_type('movies'); return false;">Movies</button>   
+                            <button class="music labelbtn" onclick="choose_type('music'); return false;">Music</button>
+                            <button class="anime labelbtn" onclick="choose_type('anime'); return false;">Anime</button>
+                            <button class="recipes labelbtn" onclick="choose_type('recipes'); return false;">Recipes</button> 
                     </div>
                 </form>
                 <div id="search_bar_case">
