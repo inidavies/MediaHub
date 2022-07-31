@@ -30,6 +30,7 @@ def search_bar():
     global Search_Results
     Search_Type = request.form.get('list_type')
     Search_Term = request.form.get('search_bar')
+    
 
     if request.method == 'POST':
         if Search_Type == "all":
@@ -62,6 +63,7 @@ def search_bar():
 
         elif Search_Type == "books":
             Search_Results = get_books(Search_Term)
+
             return True
 
         elif Search_Type == "movies":
@@ -125,7 +127,7 @@ def home():
     # Search bar function
     search = search_bar()
     if search == True:
-        return redirect(url_for("results"))
+        return redirect(url_for("results", search=Search_Term))
 
     return render_template('home.html', results=Search_Results, 
                            search_term=Search_Term, 
@@ -138,8 +140,8 @@ def home():
 
 
 # Inspiration board webpage function
-@app.route("/results", methods=['GET', 'POST'])
-def results():
+@app.route("/results/<search>", methods=['GET', 'POST'])
+def results(search):
     global Search_Term
     global Search_Type
     global Search_Results
@@ -147,10 +149,10 @@ def results():
     # Search bar function    
     search = search_bar()
     if search == True:
-        return redirect(url_for("results"))
-
+        return redirect(url_for("results", search=Search_Term))
+    
     return render_template('results.html', results=Search_Results, 
-                           search_term=Search_Term, 
+                           search_term=search, 
                            list_books=url_for("books"),
                            list_all=url_for("all"),
                            list_movies=url_for("movies"),

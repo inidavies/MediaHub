@@ -5,15 +5,15 @@
         <p> Hmm, no results for that </p>
     </div>
 {% else %}
-    <p id="search_summ" > 
-        Showing 
-        <span style="color:#FFC145">{{ results|length }}</span>
-        results for 
-        <span style="text-transform:capitalize; color:#FFC145;">" {{ search_term }} "</span>
-    </p>
-    <div class="result_container">
         <form method="POST" action="" id="nameform">
             <ul>
+                <p id="search_summ" > 
+                    Showing 
+                    <span style="color:#FFC145">{{ results|length }}</span>
+                    results for 
+                    <span style="text-transform:capitalize; color:#FFC145;">" {{ results[0]['search'] }} "</span>
+                </p>
+                <div class="result_container">
                 {% for result in results %} 
                     {% if "dish" in result %} 
                         <li>
@@ -64,7 +64,6 @@
                                     <p class="r_text"> Rating: {{ result['rating']}}/ 70</p>
                                     <p class="r_text"> Episodes: {{ result['episodes']}} </p>
                                     <p class="r_text"> <a href="{{ result['link'] }}"> Find it here </a></p>
-                                    <p id="msg{{ loop.index0 }}" > Saved!! </p>
                                 </div>
                                 <button id="save{{ loop.index0 }}" type="submit" onclick="add_tile('anime', {{ loop.index0 }}); return false;" name="add">Save</button>
                             </div>

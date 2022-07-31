@@ -25,7 +25,7 @@ def find_books(search):
         else:
                 str(response.status_code) + ': ' + str(response.reason)
 
-def process_books(book_data):
+def process_books(book_data, search):
         #parse json into python as dictionary 
         book_info = book_data["items"]
         data_container = []
@@ -45,7 +45,7 @@ def process_books(book_data):
 
                                 book_purchase = book_details['previewLink'] 
                                 book_coverphoto = images["thumbnail"]
-                                current_book = {"name":book_title, "author":book_authors, "link":book_purchase, "thumbnail":book_coverphoto }
+                                current_book = {"search": search, "name":book_title, "author":book_authors, "link":book_purchase, "thumbnail":book_coverphoto }
                 
                 data_container.append(current_book)
 
@@ -54,9 +54,10 @@ def process_books(book_data):
 def get_books(search):
         response = find_books(search)
         if type(response) == dict:
-                book_list = process_books(response)
+                book_list = process_books(response, search)
                 return book_list
         else:
                 return -1
 
 
+print(get_books("yes"))
