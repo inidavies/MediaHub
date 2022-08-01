@@ -96,15 +96,14 @@ def search_bar(user):
 
 
 def add_tile(user):
-    # The get the type and the index of the selected tile in the search results
+    # The get the type and the index of the selected tile in the search results 
     tile_index = int(request.form.get('tile_content'))
     new_tile = Search_Results[tile_index]
     tile_type = request.form.get("type")
     
 
-    # Gets all the tiles in the chosen type
+    # Gets all the tiles in the chosen type 
     saved_types = Saved_Tiles[tile_type]
-
 
 
     # Get all the links in the saved tiles
@@ -212,7 +211,7 @@ def all(user):
     display_tiles = []
     for type in Saved_Tiles:
         display_tiles.append(get_table(user, type))
-    print(display_tiles)
+
     return render_template('all.html', tiles=display_tiles,
                            search_term=Search_Term, 
                            list_books=url_for("books", user=user),

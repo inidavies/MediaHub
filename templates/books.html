@@ -22,10 +22,15 @@
                                 <p> <a href="{{ tile[2] }}"> Find it here </a></p>
                                 <p> Type: Book </p>
                             </div>
+                            <button id="del{{ loop.index0 }}" type="submit" onclick="del_tile('book', {{ loop.index0 }}); return false;" name="add">Delete</button>
                         </div>
                     </li>
             {% endfor %}
         </ul>
     </div>
 {% endif %}
+<form method="POST" action="" id="delete">
+    <input type="hidden" name="del_content" value=""/>
+    <input type="hidden" name="del_type" value="" />
+</form>
 {% endblock content %}
