@@ -38,3 +38,11 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.invalid_msg{
+  display: none;
+  height: 4vh;
+  padding: 1vh;
+  background-color: #fadde1;
+  color:#b54e55;
+  border-radius: 7px;
+}
