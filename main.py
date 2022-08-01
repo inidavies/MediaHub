@@ -320,9 +320,9 @@ def login():
                 return redirect(url_for('home', user=user))
 
         return render_template('login.html', form=form, display="block")
-        #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
+        #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>' 
 
-    return render_template('login.html', form=form, display="none")
+    return render_template('login.html', form=form, display="none", signup=url_for("signup"))
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -338,7 +338,7 @@ def signup():
         return redirect(url_for('login'))
         #return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
 
-    return render_template('signup.html', form=form)
+    return render_template('signup.html', form=form, login=url_for("login"))
 
 
 @app.route('/logout')
