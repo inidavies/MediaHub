@@ -9,7 +9,7 @@
   <body>
     <nav class="navbar">
         <div class="container-fluid">
-            <a href="/"><h1 id="title">Media Hub</h1></a>
+            <a href={{ home }}><h1 id="title">Media Hub</h1></a>
         </div>
 
         <div class="pages">
@@ -60,14 +60,33 @@
         document.getElementById('add_text').innerText= 'Add ' + type + ' yourself'; 
       }
 
-      function add_tile(type, result)
+      function add_tile(event, type, result)
       {
           document.getElementsByName("tile_content")[0].value = result;
           document.getElementsByName("type")[0].value = type;
           id = "save"+result;
           msg_id = "msg"+result;
           document.getElementById(id).style.backgroundColor = 'grey';
-          document.getElementById("hide").submit();
+
+          //document.getElementById("add").submit();
+          submitAdd(event, type, result);
+      }
+
+      function submitAdd(event, type, result){
+        let xmlhttp = new XMLHttpRequest()
+        xmlhttp.open("POST", window.location.href,true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("tile_content=" + result + "&type=" + type);
+
+        event.preventDefault();
+      }
+
+      function del_tile(type, result)
+      {
+          document.getElementsByName("del_content")[0].value = result;
+          document.getElementsByName("del_type")[0].value = type;
+          document.getElementById(id).style.backgroundColor = 'grey';
+          document.getElementById("delete").submit();
       }
 
   </script>
