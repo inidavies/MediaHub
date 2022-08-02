@@ -1,13 +1,26 @@
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+body{
+    background-image: url('https://cdn.pixabay.com/photo/2017/12/28/12/31/desktop-3045123_960_720.jpg');
+    background-color: #63B4D1;
+    font-family: 'Playfair Display', serif;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+    font-weight: bolder;
+    color: #610F7F;
+}
+.container{
+  margin-top: 3%;
+  margin-left: 35%;
+  width: 30%;
+  height: auto;
+  background-color: white;
+}
 .form-signin {
   max-width: 400px;
   padding: 15px;
-  margin: 0 auto;
+  margin: 20vh auto;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {

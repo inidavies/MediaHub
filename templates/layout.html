@@ -9,7 +9,7 @@
   <body>
     <nav class="navbar">
         <div class="container-fluid">
-            <a href={{ home }}><h1 id="title">Media Hub</h1></a>
+            <a href={{ home }}><h1 id="title">Your Media Hub</h1></a>
         </div>
 
         <div class="pages">
@@ -19,6 +19,7 @@
             <a href="{{ list_music }}"> Music </a>
             <a href="{{ list_anime }}"> Anime </a>
             <a href="{{ list_recipes }}"> Recipes </a>
+            <a href="{{ logout }}"> Logout </a>
         </div>
     </nav>
 
@@ -42,9 +43,6 @@
                                 <input class="search__input" name="search_bar" placeholder="Search for something"/>
                                 <input type="hidden" name="list_type" value="all"/>
                         </div>
-                        <div class="add_instr">
-                            <button type="button" name="manual">+</button><span id="add_text">Add one yourself</span>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -58,6 +56,7 @@
         document.getElementsByName('list_type')[0].value = type; 
         document.getElementsByName('search_bar')[0].placeholder = 'Search in ' + type; 
         document.getElementById('add_text').innerText= 'Add ' + type + ' yourself'; 
+        alert(type);
       }
 
       function add_tile(event, type, result)

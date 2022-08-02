@@ -1,0 +1,44 @@
+.body{
+    background-image: url('./woman.png');
+}
+.intro_block{
+    width:80%;
+    margin-left: 10%;
+    background:white;
+    padding: 0 0 5vh 5vw;
+    border-radius:5px;
+}
+.intro_title{
+    font-size: 20vh;
+    color: black;
+    margin-bottom: 2vh;
+}
+.start{
+    margin-left: 37%;
+    font-size: 3vh;
+    color: white;
+    text-decoration: none;
+    background-color: #1F271B;
+    padding: 5px 10px 10px 10px;
+    border-radius: 5px;
+}
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { 
+    text-decoration: none; 
+    background-color: peachpuff;
+    color: black;
+}
+
+
+a:active { text-decoration: none; }
+
+.title_block{
+    width: 70vw;
+    height: auto;
+    margin-top: 20%;
+}

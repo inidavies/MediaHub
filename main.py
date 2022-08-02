@@ -39,7 +39,7 @@ def search_bar(user):
     global Search_Results
     Search_Type = request.form.get('list_type')
     Search_Term = request.form.get('search_bar')
-    
+    print(Search_Type)
 
     if request.method == 'POST':
         if Search_Type == "all":
@@ -156,7 +156,7 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 @app.route("/")
 @app.route("/intro", methods=['GET', 'POST'])
 def intro():
-    return render_template('intro.html')
+    return render_template('intro.html', login=url_for('login'), signup=url_for('signup'))
 
 # Home webpage function
 @app.route("/home/<user>", methods=['GET', 'POST'])
@@ -179,7 +179,8 @@ def home(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user), 
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 # print(Search_Results)
 # Inspiration board webpage function 
@@ -203,7 +204,8 @@ def results(user, search):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user), 
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 
 # Displays all saved tiles
@@ -221,7 +223,8 @@ def all(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user),
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 
 # Displays saved book tiles
@@ -237,7 +240,8 @@ def books(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user),
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 
 # Displays saved movie tiles
@@ -253,7 +257,8 @@ def movies(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user),
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 
 # Displays saved music tiles , home = url_for("home")
@@ -269,7 +274,8 @@ def music(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user), 
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 
 # Displays saved anime tiles
@@ -285,7 +291,8 @@ def anime(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user),
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 
 # Displays saved recipes tiles
@@ -301,7 +308,8 @@ def recipes(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user),
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 # User can manually add things here
 @app.route("/edits/<user>/", methods=['GET', 'POST'])
@@ -314,7 +322,8 @@ def edits(user):
                            list_music=url_for("music", user=user),
                            list_anime=url_for("anime", user=user),
                            list_recipes=url_for("recipes", user=user),
-                           home = url_for("home", user=user))
+                           home = url_for("home", user=user),
+                           logout = url_for("logout"))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
