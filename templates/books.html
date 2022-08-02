@@ -17,12 +17,12 @@
                         <div class="tile">
                             <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
                             <div class="list_text">
-                                <p class="list_main"> {{ tile[0]}} </p>
-                                <p> by {{ tile[1]}}</p>
-                                <p> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                <p class="list_main"> {{ tile[1]}} </p>
+                                <p> by {{ tile[2]}}</p>
+                                <p> <a href="{{ tile[3] }}"> Find it here </a></p>
                                 <p> Type: Book </p>
                             </div>
-                            <button id="del{{ loop.index0 }}" type="submit" onclick="del_tile('book', {{ loop.index0 }}); return false;" name="add">Delete</button>
+                            <button id="del{{ loop.index0 }}" type="submit" onclick="del_tile('book', {{ loop.index0 }});" name="del">Delete</button>
                         </div>
                     </li>
             {% endfor %}

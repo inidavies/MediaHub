@@ -21,13 +21,13 @@ from books import get_books
 from datab import create_tables
 from datab import get_table
 from datab import create_database
-
+from datab import reset_table
 
 # Variables to be used globally
 Search_Term = ""
 Search_Type = ""
 Search_Results = []
-Saved_Tiles = {"book":[], "music":[], "movie":[], "anime":[], "recipe":[]}
+Saved_Tiles = {"book":None, "music":None, "movie":None, "anime":None, "recipe":None}
 
 # Create a flask app for the website
 app = Flask(__name__)
@@ -96,26 +96,67 @@ def search_bar(user):
 
 
 def add_tile(user):
+    global Search_Term
+    global Search_Type
+    global Search_Results
     # The get the type and the index of the selected tile in the search results 
     tile_index = int(request.form.get('tile_content'))
     new_tile = Search_Results[tile_index]
     tile_type = request.form.get("type")
-    
+
+    # Get all items in the db
+    for type in Saved_Tiles:
+        tile = get_table(user, type)
+        #print(tile)
+        if tile != ():
+            if Saved_Tiles[tile_type] != None:
+                Saved_Tiles[tile_type].append(tile)
+            else:
+                Saved_Tiles[tile_type] = tile
 
     # Gets all the tiles in the chosen type 
     saved_types = Saved_Tiles[tile_type]
 
 
-    # Get all the links in the saved tiles
-    saved_links = []
-    for tile in saved_types:
-        saved_links.append(tile["link"])
-    
-    # Add if the current link is not in the saved tiles
-    if new_tile["link"] not in saved_links:
-        Saved_Tiles[tile_type].append(new_tile)
-        #Create db tables and retrieve info from item
+    # Get all the links in the saved tiles 
+    if saved_types != None:
+        saved_links = []
+        print(saved_types)
+        for tile in saved_types:
+            print(tile)
+            saved_links.append(tile["link"])
+        
+        # Add if the current link is not in the saved tiles
+        if new_tile["link"] not in saved_links:
+            Saved_Tiles[tile_type].append(new_tile)
+            #Create db tables and retrieve info from item
+            create_tables(user, Saved_Tiles)
+    else:
+        Saved_Tiles[tile_type] = new_tile
         create_tables(user, Saved_Tiles)
+
+
+def delete_tile(user):
+    global Search_Term
+    global Search_Type
+    global Search_Results
+    # The get the type and the index of the selected tile in the saved tiles 
+    tile_index = int(request.form.get('del_content'))
+    tile_type = request.form.get("del_type")
+
+    # Get all items in the db
+    for type in Saved_Tiles:
+        Saved_Tiles[tile_type].append(get_table(user, type))
+
+    chosen_tile = Saved_Tiles[tile_type][tile_index]
+    
+    # Delete from global list
+    print(Saved_Tiles[tile_type])
+    Saved_Tiles[tile_type].remove(chosen_tile)
+    print(Saved_Tiles)
+    # Update the database
+    reset_table(user, tile_type)
+    create_tables(user, Saved_Tiles)
 
 
 # Make database for flask form
@@ -228,6 +269,9 @@ def all(user):
 def books(user):
     display_tiles = []
     display_tiles = get_table(user,"book")
+    if request.method == 'POST':
+        delete_tile(user)
+        return redirect(url_for("books", user=user))
     return render_template('books.html', tiles= display_tiles,
                            search_term=Search_Term, 
                            list_books=url_for("books", user=user),

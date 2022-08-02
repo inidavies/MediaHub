@@ -17,11 +17,11 @@
                         {% if "dish" in tile %} 
                             <li>
                                 <div class="tile">
-                                    <img class="list_img list" src="{{ tile[2] }}" alt="">
+                                    <img class="list_img list" src="{{ tile[3] }}" alt="">
                                     <div class="list_text">
                                         <p> Type: Recipe </p>
-                                        <p> Name: {{ tile[0]}} </p>
-                                        <p> Link: <a href="{{ tile[1] }}"> Find it here </a></p>
+                                        <p> Name: {{ tile[1]}} </p>
+                                        <p> Link: <a href="{{ tile[2] }}"> Find it here </a></p>
                                     </div>
                                 </div>
                             </li>
@@ -29,24 +29,24 @@
                         {% if "artist" in tile %} 
                             <li>
                                 <div class="tile">
-                                    <img class="list_img list" src="{{ tile[3] }}" alt="">
+                                    <img class="list_img list" src="{{ tile[4] }}" alt="">
                                     <div class="list_text">
                                         <p> Type: Music </p>
-                                        <p> Name: {{ tile[0]}} </p>
-                                        <p> Artist: {{ tile[1]}} </p>
+                                        <p> Name: {{ tile[1]}} </p>
+                                        <p> Artist: {{ tile[2]}} </p>
                                     </div>
-                                    <p><a href="{{ tile[2] }}"> Find it here </a></p>
+                                    <p><a href="{{ tile[3] }}"> Find it here </a></p>
                                 </div>
                             </li>
                         {% endif %}
                         {% if "date" in tile %} 
                             <li>
                                 <div class="tile">
-                                    <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
+                                    <img class="list_img list" src="{{ tile[4] }}" alt="">
                                     <div class="list_text">
-                                        <p class="list_main"> {{ tile[0]}} </p>
-                                        <p> by {{ tile[1]}}</p>
-                                        <p> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                        <p class="list_main"> {{ tile[1]}} </p>
+                                        <p> by {{ tile[2]}}</p>
+                                        <p> <a href="{{ tile[3] }}"> Find it here </a></p>
                                         <p> Type: Movie </p>
                                     </div>
                                 </div>
@@ -55,13 +55,13 @@
                         {% if "episodes" in tile %} 
                             <li>
                                 <div class="tile">
-                                    <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
+                                    <img class="list_img list" src="{{ tile[5] }}" alt="">
                                     <div class="list_text">
                                         <p class="r_text"> Type: Anime </p>
-                                        <p class="r_text"> Name: {{ tile[0]}} </p>
-                                        <p class="r_text"> Rating: {{ tile[1]}}/ 70</p>
-                                        <p class="r_text"> Episodes: {{ tile['episodes']}} </p>
-                                        <p class="r_text"> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                        <p class="r_text"> Name: {{ tile[1]}} </p>
+                                        <p class="r_text"> Rating: {{ tile[2]}}/ 70</p>
+                                        <p class="r_text"> Episodes: {{ tile[4]}} </p>
+                                        <p class="r_text"> <a href="{{ tile[3] }}"> Find it here </a></p>
                                     </div>
                                 </div>
                             </li>
@@ -69,11 +69,11 @@
                         {% if "author" in tile %} 
                             <li>
                                 <div class="tile">
-                                    <img class="list_img list" src="{{ tile[3] }}" alt="">
+                                    <img class="list_img list" src="{{ tile[4] }}" alt="">
                                     <div class="list_text">
-                                        <p class="list_main"> {{ tile[0]}} </p>
-                                        <p> by {{ tile[1]}}</p>
-                                        <p> <a href="{{ tile[2] }}"> Find it here </a></p>
+                                        <p class="list_main"> {{ tile[1] }} </p>
+                                        <p> by {{ tile[2]}}</p>
+                                        <p> <a href="{{ tile[3] }}"> Find it here </a></p>
                                         <p> Type: Book </p>
                                     </div>
                                 </div>

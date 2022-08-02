@@ -15,10 +15,10 @@
         {% for tile in tiles %} 
                 <li>
                     <div class="tile">
-                        <img class="list_img list" src="{{ tile['thumbnail'] }}" alt="">
+                        <img class="list_img list" src="{{ tile[3] }}" alt="">
                         <div class="list_text">
-                            <p class="list_main"> {{ tile[0]}} </p>
-                            <p> by {{ tile[1]}}</p>
+                            <p class="list_main"> {{ tile[1]}} </p>
+                            <p> by {{ tile[2]}}</p>
                             <p> <a href="{{ tile[2] }}"> Find it here </a></p>
                             <p> Type: Music </p>
                         </div>
