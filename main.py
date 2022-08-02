@@ -33,6 +33,8 @@ Saved_Tiles = {"book":[], "music":[], "movie":[], "anime":[], "recipe":[]}
 app = Flask(__name__)
 proxied = FlaskBehindProxy(app)
 
+
+# Does user search
 def search_bar(user):
     global Search_Term
     global Search_Type
