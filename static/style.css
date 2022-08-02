@@ -150,7 +150,7 @@ hr{
 }
 .result, .tile{
     width: 50vw;
-    height: 20vh;
+    height: auto;
     padding-left: 1vw;
     padding-right: 1vw;
     padding-bottom: 1vw;
@@ -158,8 +158,15 @@ hr{
     border-bottom: solid 1px black;
 }
 .result button{
+    width: auto;
+    height: auto;
     background-color: #480355 ;
     color: white
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    font-size: 75%;
+    color:white;
+    
 }
 .result_img, .list_img{
     border: solid 1px black;
