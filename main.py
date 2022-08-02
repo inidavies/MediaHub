@@ -153,6 +153,7 @@ class RegisterForm(FlaskForm):
 # Assign the flask app an secret key
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 
+@app.route("/")
 @app.route("/intro", methods=['GET', 'POST'])
 def intro():
     return render_template('intro.html')
@@ -315,7 +316,6 @@ def edits(user):
                            list_recipes=url_for("recipes", user=user),
                            home = url_for("home", user=user))
 
-@app.route("/")
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
