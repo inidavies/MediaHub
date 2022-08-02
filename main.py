@@ -41,7 +41,6 @@ def search_bar(user):
     global Search_Results
     Search_Type = request.form.get('list_type')
     Search_Term = request.form.get('search_bar')
-    print(Search_Type)
 
     if request.method == 'POST':
         if Search_Type == "all":
@@ -364,7 +363,7 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('intro'))
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
