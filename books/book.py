@@ -4,7 +4,6 @@ import os
 import pandas as pd
 import sqlalchemy as db
 import urllib.request
-from pprint import pprint
 
 BOOK_API_KEY = os.environ.get('BOOK_API_KEY')
 

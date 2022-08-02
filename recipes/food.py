@@ -1,7 +1,6 @@
 import requests
 import os
 import re
-from pprint import pprint
 
 RECIPE_API_KEY = os.environ.get('RECIPE_API_KEY')
 RECIPE_API_HOST = os.environ.get('RECIPE_API_HOST')

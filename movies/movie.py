@@ -3,7 +3,6 @@ import json
 import pandas as pd
 import sqlalchemy as db
 import os
-from pprint import pprint
 
 #  Dataframe
 col_names = ['Title', 'Release Date', 'Trailer']
