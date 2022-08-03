@@ -200,12 +200,14 @@ hr{
 .result_text, .list_text{
     width: 100%;
 }
+.result a{
+    text-decoration: none;
+}
+.result a:visited{
+    color:#119DA4;
+}
 .main{
     color: black;
-}
-.wider_img{
-    width: 10vw;
-    height: 20vh;
 }
 .wider_img{
     width: 10vw;
@@ -217,6 +219,12 @@ hr{
     font-size: 3.2vh;
     margin-top: 3vh;
     padding-bottom: 3vh;
+}
+.tile a{
+    text-decoration: none;
+}
+.tile a:visited{
+    color:#119DA4;
 }
 .list_main{
     font-size: 4vh;

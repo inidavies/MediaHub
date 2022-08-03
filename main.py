@@ -30,7 +30,7 @@ Search_Results = []
 Saved_Tiles = {"book":[], "music":[], "movie":[], "anime":[], "recipe":[]}
 
 # Create a flask app for the website
-app = Flask(__name__)
+app = Flask(__name__) 
 proxied = FlaskBehindProxy(app)
 
 
@@ -337,7 +337,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 return redirect(url_for('home', user=user))
 
-        return render_template('login.html', form=form, display="block")
+        return render_template('login.html', form=form, display="block", signup=url_for("signup"))
         #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>' 
 
     return render_template('login.html', form=form, display="none", signup=url_for("signup"))
