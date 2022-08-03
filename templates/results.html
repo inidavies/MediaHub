@@ -18,7 +18,7 @@
                     {% if "dish" in result %} 
                         <li>
                             <div class="result">
-                                <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
+                                <img class="result_img wider_img result_item" src="{{ result['thumbnail'] }}" alt="">
                                 <div class="result_text">
                                     <p> Name: {{ result['dish']}} </p>
                                     <p> Link: <a href="{{ result['link'] }}"> Find it here </a></p>
@@ -32,7 +32,7 @@
                     {% if "artist" in result %} 
                         <li>
                             <div class="result">
-                                <img class="result_img result_item" src="{{ result['thumbnail'] }}" alt="">
+                                <img class="result_img wider_img result_item" src="{{ result['thumbnail'] }}" alt="">
                                 <div class="result_text">                       
                                     <p> Name: {{ result['name']}} </p>
                                     <p> Artist: {{ result['artist']}} </p>

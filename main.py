@@ -351,12 +351,15 @@ def signup():
         hashed_password = generate_password_hash(form.password.data, method='sha256')
         new_user = User(username=form.username.data, password=hashed_password)
         db.session.add(new_user)
-        db.session.commit()
-        create_database(new_user.username)
+        try:
+            db.session.commit()
+            create_database(new_user.username)
+        except:
+            return render_template('signup.html', form=form, login=url_for("login"), display="block")
         return redirect(url_for('login'))
         #return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
 
-    return render_template('signup.html', form=form, login=url_for("login"))
+    return render_template('signup.html', form=form, login=url_for("login"), display="none")
 
 
 @app.route('/logout')
